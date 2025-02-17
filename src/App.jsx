@@ -40,13 +40,11 @@ function App() {
 
   return (
     <>
-      {/* Title */}
       <div className="title-container">
         <img className="github-logo" src={Github} alt="GitHub Logo" />
         <h1 className="title-name">GitHub Repository Finder</h1>
       </div>
 
-      {/* Search Bar */}
       <div className="search-container">
         <input
           type="text"
@@ -58,10 +56,8 @@ function App() {
           Search
         </button>
       </div>
-
-      {/* Results */}
+      {isLoading && <p style={{textAlign: 'center'}}>Loading, please wait...</p>}
       <div className="repositories">
-        {isLoading && <p>Loading, please wait...</p>}
         {repositories &&
           repositories.map((repo) => (
             <Card
@@ -78,7 +74,6 @@ function App() {
           ))}
       </div>
 
-      {/* Pagination */}
       {repositories && (
         <div className="pagination-container">
           <button
