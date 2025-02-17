@@ -7,6 +7,7 @@
     border-radius: 8px;
     border-style:double;
     border-width: 1px;
+    position: relative;
 }
 
 .repository-name-container{
@@ -21,7 +22,13 @@
     border-radius: 2rem;
 }
 
+.repository-info{
+    height: 150px;
+}
+
 .repository-stats{
+    position: absolute;
+    bottom: 0;
     display: flex;
     gap: 6px;
 }
@@ -42,4 +49,14 @@ a {
     color: inherit;
     cursor: pointer;
   }
+
+.repository-description {
+    overflow: hidden; /* Prevent the text from overflowing */
+    text-overflow: ellipsis; /* Add "..." if the text exceeds the container */
+    display: -webkit-box; /* Enable line clamping */
+    -webkit-line-clamp: 3; /* Limit to 3 lines (adjust as needed) */
+    -webkit-box-orient: vertical; /* Ensure vertical text overflow handling */
+    word-wrap: break-word; /* Break long words to prevent overflow */
+}
+
   

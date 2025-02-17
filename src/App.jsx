@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import Github from "./assets/github-mark.png";
 import "./App.css";
 import Card from "./components/card";
-const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 function App() {
-  console.log(GITHUB_TOKEN);
-  const [searchTxt, setSearchTxt] = useState(""); // Default value
+  const [searchTxt, setSearchTxt] = useState("");
   const [repositories, setRepositories] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
@@ -14,25 +13,30 @@ function App() {
 
   // Fetch Repositories Function
   const fetchRepositories = async () => {
-    if (!searchTxt.trim()) return; // Prevent empty search
+    if (!searchTxt.trim()) return;
 
     setIsLoading(true);
     const res = await fetch(
-      `https://api.github.com/search/repositories?q=language:${searchTxt}&sort=stars&order=desc&per_page=10&page=${pageNum}`
+      `https://api.github.com/search/repositories?q=language:${searchTxt}&sort=stars&order=desc&per_page=12&page=${pageNum}`,
+      {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+        },
+      }
     );
     const data = await res.json();
 
     if (data.items) {
       setRepositories(data.items);
-      setTotalPages(Math.min(100, Math.ceil(data.total_count / 10))); // Max pages = 100 (GitHub API Limit)
+      setTotalPages(Math.min(100, Math.ceil(data.total_count / 10))); 
     }
     setIsLoading(false);
   };
 
-  // Fetch on Search or Page Change
+
   useEffect(() => {
     fetchRepositories();
-  }, [pageNum]); // Runs when `pageNum` changes
+  }, [pageNum]); 
 
   return (
     <>
@@ -47,7 +51,7 @@ function App() {
         <input
           type="text"
           className="search-box"
-          placeholder="Enter Programming Language"
+          placeholder="Programming Language"
           onChange={(e) => setSearchTxt(e.target.value)}
         />
         <button className="search-btn" onClick={() => { setPageNum(1); fetchRepositories(); }}>
