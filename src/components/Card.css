@@ -1,0 +1,45 @@
+
+.repository-card{
+    width: 300px;
+    height: 200px;
+    padding: 0.5rem 1rem;
+    background: white;
+    border-radius: 8px;
+    border-style:double;
+    border-width: 1px;
+}
+
+.repository-name-container{
+    display:flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.repository-avatar{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+}
+
+.repository-stats{
+    display: flex;
+    gap: 6px;
+}
+
+.repository-img{
+    height: 1rem;
+    width: 1rem;
+}
+
+.repository-stat-container{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  
